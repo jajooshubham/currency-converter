@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>VueJs</title>
+
+    <style media="screen">
+      *{
+        border-radius: 0 !important;
+      }
+      body{
+        background-color: #e7f7f9;
+        font-family: 'Poppins', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+
+
+    <div id="app">
+      <div class="container my-5">
+        <div class="row">
+          <div class="col-md-6">
+            <label>From</label>
+            <select v-model="from" class="form-control" name="">
+              <option :value="currency.id" v-for="currency in formatedCurrencies">{{ currency.currencyName }}</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label>To</label>
+            <select v-model="to" class="form-control" name="">
+              <option :value="currency.id" v-for="currency in formatedCurrencies">{{ currency.currencyName }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <input v-model="amount" type="text" class="form-control my-5" placeholder="Enter Amount">
+            <div class="text-center">
+              <button :disabled="disabled" v-on:click="convertCurrencies" type="submit" class="btn btn-lg btn-primary">{{ loading ? 'Converting....' : 'Convert'}}</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <div v-show="!resultDisable" class="text-center display-2 my-5">
+              {{ calculateResult }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
